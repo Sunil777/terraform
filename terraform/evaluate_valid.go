@@ -91,7 +91,7 @@ func (d *evaluationStateData) staticValidateReference(ref *addrs.Reference, self
 		return d.staticValidateModuleCallReference(modCfg, addr, ref.Remaining, ref.SourceRange)
 	case addrs.ModuleCallInstance:
 		return d.staticValidateModuleCallReference(modCfg, addr.Call, ref.Remaining, ref.SourceRange)
-	case addrs.ModuleCallOutput:
+	case addrs.AbsModuleCallOutput:
 		// This one is a funny one because we will take the output name referenced
 		// and use it to fake up a "remaining" that would make sense for the
 		// module call itself, rather than for the specific output, and then
@@ -106,7 +106,7 @@ func (d *evaluationStateData) staticValidateReference(ref *addrs.Reference, self
 			// but is close enough for our purposes.
 			SrcRange: ref.SourceRange.ToHCL(),
 		}
-		return d.staticValidateModuleCallReference(modCfg, addr.Call, remain, ref.SourceRange)
+		return d.staticValidateModuleCallReference(modCfg, addr.Call.Call, remain, ref.SourceRange)
 
 	default:
 		// Anything else we'll just permit through without any static validation
