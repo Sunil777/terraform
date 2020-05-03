@@ -1,6 +1,8 @@
 # This Dockerfile builds on golang:alpine by building Terraform from source
 # using the current working directory.
 #
+#access-key: AKIAWRSA7MDXJFJ5MUXM
+#secret-key: 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
 # This produces a docker image that contains a working Terraform binary along
 # with all of its source code, which is what gets released on hub.docker.com
 # as terraform:full. The main releases (terraform:latest, terraform:light and
